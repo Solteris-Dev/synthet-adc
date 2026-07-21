@@ -1,27 +1,40 @@
 # synthet-adc
 
 A **computer-native instrument** — played like a real instrument, but the
-strings live in software and your mouse, tablet, and keyboard are the hands.
+strings live in software and your mouse, tablet, and keyboard are the hands. Super WIP right now.  
+All feedback/testing is welcome! 
 
 Three pillars:
 
-1. **A switchable articulation matrix** (Ask 1) — continuous pointer motion and
+1. **A switchable articulation matrix** — continuous pointer motion and
    discrete keys trade the roles of *strumming* and *pitch* depending on a mode
    you can flip live (from the UI or from a MIDI device).
-2. **Playhead envelopes** (Ask 2) — draw multi-lane automation that loops over
+   
+   **Input is handled in a specifically opinionated way that's primarily meant for having fun with no special hardware.**
+   
+3. **Playhead envelopes** — draw multi-lane automation that loops over
    the performance and drives the sound in real time.
-3. **Impossible instruments** — the voice banks are *physical models of objects
+   
+   **There's settings for the synths in the software, and they can be drawn on screen/played to modulate the instrument's properties over time.**
+   
+5. **Impossible instruments** — the voice banks are *physical models of objects
    that cannot exist*, designed so that every impossible law produces a sound
    native to digital machines. The flagship is the **Modulo Koto**.
+   
+   **They make fun sounds that aren't super realistic.**
+   
 
 ## Provenance and guarantees
 
 synthet-adc's code is **substantially AI-generated** — mostly-to-entirely, by design and
-out in the open; we'd rather say so than pretend otherwise. We stand behind it and test
+out in the open; we'd rather say so than pretend otherwise. The author mostly worked with Claude models/GPT-5.6/Gemini/Cursor models.
+We stand behind it and test
 what matters (28 headless tests, bit-exact DSP equivalence checks, a human in the loop),
 and we treat AI-written code as first-class — but it is provided **as-is, with no
 guarantees** (see [`LICENSE`](LICENSE) and [`SECURITY.md`](SECURITY.md)). Run it at your
-own risk, and if something's off, [open an issue](../../issues/new/choose).
+own risk, and if something's off, [open an issue](../../issues/new/choose). 
+
+**This isn't a particularly hardened app, which is due to it being local/LLM generated code.**
 
 ## Install & run
 
