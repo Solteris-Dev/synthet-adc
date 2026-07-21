@@ -1,0 +1,21 @@
+# synthet-adc runtime dependencies (all platforms: macOS, Windows, Linux).
+#
+#   pip install -r requirements.txt      # then:  python run.py
+#
+# These mirror the [project].dependencies in pyproject.toml. If you'd rather
+# install synthet-adc as a package (and get the `synthet-adc` command), use
+#   pip install -e .            instead of this file.
+
+numpy>=1.24
+sounddevice>=0.4.6      # real-time audio out (bundles PortAudio on macOS/Windows)
+soundfile>=0.12         # WAV export        (bundles libsndfile on macOS/Windows)
+PySide6>=6.5            # Qt GUI
+
+# --- optional extras (the app runs without them) ---------------------------
+# Audio FX chain — Reverb + VST3/AU plugin hosting:
+#   pip install pedalboard
+# MIDI mode switching (drive the mode from a footswitch/pad):
+#   pip install mido python-rtmidi
+#
+# Or install everything at once via the package extras:
+#   pip install -e ".[fx,midi]"

@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "synthet-adc"
+version = "0.1.0"
+description = "A computer-native instrument: a strum/pitch input matrix, playhead envelopes, and impossible-physics synths"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Noah Eikel" }]
+keywords = ["synth", "instrument", "physical-modelling", "chiptune", "karplus-strong"]
+dependencies = [
+    "numpy>=1.24",
+    "sounddevice>=0.4.6",
+    "soundfile>=0.12",
+    "PySide6>=6.5",
+]
+
+[project.optional-dependencies]
+# FX chain (Reverb + VST3/AU hosting). The app runs without it (dry synth).
+fx = ["pedalboard>=0.9"]
+# MIDI mode-switch driver. The app runs without it (no external mode control).
+midi = ["mido>=1.3", "python-rtmidi>=1.5"]
+all = ["synthet-adc[fx,midi]"]
+
+[project.scripts]
+synthet-adc = "synthet.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["synthet*"]           # never sweep up a stray venv / cache dir
