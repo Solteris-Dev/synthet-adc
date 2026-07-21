@@ -5,10 +5,12 @@ what running it does and does not expose, so you know what you're getting.
 
 ## The short version
 
-There is **no network surface** — no server, no sockets, no telemetry, no auto-update,
-no accounts. The app makes sound and reads/writes files you point it at. The only trust
-boundaries worth naming are (1) audio plugins you choose to load run as native code, and
-(2) session files are data you should treat as data.
+**Today** there is no network surface — no server, no sockets, no telemetry, no
+auto-update, no accounts. The app makes sound and reads/writes files you point it at.
+The only trust boundaries worth naming right now are (1) audio plugins you choose to
+load run as native code, and (2) session files are data you should treat as data. A few
+capabilities are on the roadmap — see [Planned capabilities](#planned-capabilities) for
+the boundaries they'll respect.
 
 ## Trust boundaries
 
@@ -27,10 +29,28 @@ boundaries worth naming are (1) audio plugins you choose to load run as native c
 - **Rendered audio (`take.wav`, demo renders).** Ordinary file writes to the path you
   choose or the current directory. Nothing is uploaded anywhere.
 
-## What there isn't
+## What there isn't (today)
 
-No network I/O, no background services, no analytics, no credentials, no persistence
-beyond files you explicitly save. "Uninstalling" is deleting the folder / the venv.
+No network I/O, no background services, no analytics, no credentials, and no persistence
+beyond files you explicitly save. When the capabilities below land they'll stay inside
+the boundaries stated there. "Uninstalling" is deleting the folder / the venv.
+
+## Planned capabilities
+
+None of these are shipped yet. This section states up front what they will and won't do,
+so the trust model stays honest as the app grows.
+
+- **Optional analytics (opt-out).** Any usage analytics will be optional and **opt-out**
+  — turning it off is one setting, and the app stays fully functional without it. It
+  would cover product usage (what's used, what breaks), never your audio, your sessions,
+  or the contents of your files.
+- **Local, self-contained persistence.** Saved state — settings, recent sessions, small
+  caches — stays **alongside the files the app already uses** (its own folder, or paths
+  you choose), not scattered across your system, and never anything hidden or hostile.
+  Plain files you can read and delete.
+- **Opt-in interaction with other apps.** The app may talk to other running software over
+  protocols like **MIDI** — to sync with, or drive, another instrument — but only when
+  **you configure and allow it**. Nothing reaches out to anything else by default.
 
 ## Reporting
 

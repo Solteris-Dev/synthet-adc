@@ -14,6 +14,15 @@ Three pillars:
    that cannot exist*, designed so that every impossible law produces a sound
    native to digital machines. The flagship is the **Modulo Koto**.
 
+## Provenance and guarantees
+
+synthet-adc's code is **substantially AI-generated** — mostly-to-entirely, by design and
+out in the open; we'd rather say so than pretend otherwise. We stand behind it and test
+what matters (28 headless tests, bit-exact DSP equivalence checks, a human in the loop),
+and we treat AI-written code as first-class — but it is provided **as-is, with no
+guarantees** (see [`LICENSE`](LICENSE) and [`SECURITY.md`](SECURITY.md)). Run it at your
+own risk, and if something's off, [open an issue](../../issues/new/choose).
+
 ## Install & run
 
 Works on **macOS, Windows, and Linux**. You need **Python 3.9+** (3.10+
