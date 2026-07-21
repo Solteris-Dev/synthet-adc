@@ -1,0 +1,62 @@
+name: Publish to PyPI
+
+# Builds and uploads the package when you publish a GitHub Release (or trigger
+# it by hand). Uses PyPI Trusted Publishing (OIDC) — no API token is stored in
+# the repo. See the one-time PyPI setup notes at the bottom of this file.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:        # manual "Run workflow" button, e.g. for the first upload
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build sdist + wheel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build
+        run: |
+          python -m pip install --upgrade pip build
+          python -m build
+      - name: Check metadata
+        run: |
+          pip install twine
+          twine check dist/*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/synthet-adc
+    permissions:
+      id-token: write        # required for Trusted Publishing (OIDC)
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - name: Publish
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+# --- One-time PyPI setup (done on pypi.org, not here) ------------------------
+# Trusted Publishing needs a "pending publisher" registered before the first
+# upload. On https://pypi.org/manage/account/publishing/ add:
+#   PyPI project name : synthet-adc
+#   Owner             : Solteris-Dev
+#   Repository name   : synthet-adc
+#   Workflow filename : publish.yml
+#   Environment name  : pypi
+# Then publish a Release (or run this workflow manually) to upload the build.

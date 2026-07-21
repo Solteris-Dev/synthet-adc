@@ -1,0 +1,60 @@
+name: Bug report
+description: Something is broken or behaves wrong
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. If it's about a **sound** being wrong, a short WAV or a
+        screen recording helps more than words.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, and what went wrong.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected instead
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Mode = MOUSE_PITCH, synth = bitstring
+        2. Drew the bits lane down to ~1.5 bits
+        3. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: OS
+      options:
+        - macOS
+        - Windows
+        - Linux
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      placeholder: "3.12"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: synthet-adc version or commit
+      placeholder: "0.1.0, or a commit sha"
+  - type: textarea
+    id: extra
+    attributes:
+      label: Traceback / logs / audio
+      description: Paste any traceback, or attach a WAV. Optional but helpful.

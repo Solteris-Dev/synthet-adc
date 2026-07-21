@@ -1,0 +1,36 @@
+name: Idea / feature
+description: A feature, a synth, a tuning, or a sound direction
+labels: ["idea"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is an **opinionated** instrument — ideas that sharpen its character land
+        best. "What sound or gesture do you wish it had?" is a great place to start.
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: What you want, and what it's for.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it fits
+      description: >
+        How does it fit an opinionated, chiptune-native instrument that constrains just
+        enough to give direction? (See the README's design stance.) Rough is fine.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - A synth bank / a sound
+        - Input / playability
+        - Envelopes / automation
+        - Tuning
+        - UI / settings
+        - Other
+    validations:
+      required: true
